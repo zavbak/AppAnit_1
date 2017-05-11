@@ -26,12 +26,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class EspressoHelloTest {
 
     //http://developer.alexanderklimov.ru/android/debug/espresso.php
+    //http://java-help.ru/introduction-to-android-espresso/
 
     private String mStringToBetyped;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
+
+
 
 
 
