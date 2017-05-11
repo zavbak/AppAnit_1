@@ -42,4 +42,8 @@ public class ListScreenPresenter extends MvpPresenter<ListScreenView> {
 
 
 
+    public void onRefresh() {
+        refreshContractors();
+        getViewState().refresh();
+    }
 }

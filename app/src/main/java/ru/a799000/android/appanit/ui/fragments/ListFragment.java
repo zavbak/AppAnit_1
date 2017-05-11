@@ -1,6 +1,7 @@
 package ru.a799000.android.appanit.ui.fragments;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,6 +31,9 @@ public class ListFragment extends MvpFragment implements ListScreenView {
 
     @BindView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.srl_container)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
 
 
@@ -64,7 +68,21 @@ public class ListFragment extends MvpFragment implements ListScreenView {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mListPresenter.onRefresh();
+
+                // указываем, что мы уже сделали все, что нужно было
+                // убираем стандартную анимацию
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
     }
+
 
 
 
